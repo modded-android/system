@@ -2,14 +2,20 @@
 [@awfixer]: https://github.com/awfixer
 [Anthropic]: https://anthropic.com
 [Communities]: https://github.com/modded-android/system/wiki/Communities
+[Donate]: https://github.com/modded-android/system/wiki/donate
+
+
+> [!NOTE]
+> you can check out the [Communities] page to find out where we hang out!
 
 # system
 the systems repo for Modded Android
 
-> [!NOTE]
+> [!CAUTION]
 > This repo supersedes [ma-system-old] and the README is a WIP
 
-> "it is useless to modernize androids codebase, we have to pick the nuclear option"
+> [!WARNING]
+> "it is useless to modernize androids codebase, we had to pick the nuclear option"
 
 ### What is this repo?
 
@@ -21,6 +27,3 @@ it effectively is:
 - a migration away from old versioning and management
 
 this repo is currently made and maintained by [@awfixer] and the only approved AI models that can be used to help with the code are the [Anthropic] Models
-
-> [!INFO]
-> you can check out the [Communities] page to find out where we hang out!
