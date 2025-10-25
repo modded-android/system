@@ -1,0 +1,51 @@
+name: Sync to External Providers
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Update README for Mirrors
+        run: |
+          echo -e "# system\n\n**This is a read-only mirror of the main repository at [https://github.com/modded-android/system](https://github.com/modded-android/system). Please submit issues and pull requests there.**\n\n$(cat README.md)" > README.md
+          git add README.md
+          git commit -m "Update README to indicate read-only mirror" || echo "No README changes"
+          git fetch origin
+          git rebase origin/main
+
+      - name: Push to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/modded-android/system.git
+          git push gitlab main --force || echo "Failed to push to GitLab"
+
+      - name: Push to Gitea
+        env:
+          GITEA_TOKEN: ${{ secrets.GITEA_TOKEN }}
+        run: |
+          git remote add gitea https://oauth2:${GITEA_TOKEN}@gitea.com/modded-android/system.git
+          git push gitea main --force || echo "Failed to push to Gitea"
+
+      - name: Push to Codeberg
+        env:
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+        run: |
+          git remote add codeberg https://oauth2:${CODEBERG_TOKEN}@codeberg.org/modded-android/system.git
+          git push codeberg main --force || echo "Failed to push to Codeberg"
