@@ -1,6 +1,7 @@
 [ma-system-old]: https://github.com/modded-android/ma-system-old
 [@awfixer]: https://github.com/awfixer
 [Anthropic]: https://anthropic.com
+[Communities]: https://github.com/modded-android/system/wiki/Communities
 
 # system
 the systems repo for Modded Android
@@ -20,3 +21,6 @@ it effectively is:
 - a migration away from old versioning and management
 
 this repo is currently made and maintained by [@awfixer] and the only approved AI models that can be used to help with the code are the [Anthropic] Models
+
+> [!INFO]
+> you can check out the [Communities] page to find out where we hang out!
